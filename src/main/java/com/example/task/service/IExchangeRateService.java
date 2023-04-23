@@ -1,9 +1,10 @@
 package com.example.task.service;
 
-import com.example.task.entity.ExchangeRateResponse;
+import com.example.task.entity.ExchangeRateData;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 public interface IExchangeRateService {
-    public ExchangeRateResponse getExchangeRateDetailsByCodeAndDate(String code,LocalDate date);
+    public Optional<ExchangeRateData> getExchangeRateDetailsByCodeAndDate(String code, LocalDate date);
 }

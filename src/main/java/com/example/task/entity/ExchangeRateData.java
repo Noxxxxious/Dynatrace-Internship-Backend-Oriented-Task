@@ -1,15 +1,17 @@
 package com.example.task.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 import java.util.List;
 
 @Getter
 @Setter
 @Data
-public class ExchangeRateResponse {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+public class ExchangeRateData {
 
     @JsonProperty("table")
     private String table;
