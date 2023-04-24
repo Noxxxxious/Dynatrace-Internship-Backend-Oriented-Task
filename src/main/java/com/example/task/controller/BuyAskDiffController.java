@@ -1,7 +1,7 @@
 package com.example.task.controller;
 
 import com.example.task.domain.dto.GetBuyAskDiffResponse;
-import com.example.task.domain.entity.ExchangeRateDataC;
+import com.example.task.domain.dto.ExchangeRateDataC;
 import com.example.task.service.IBuyAskDiffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

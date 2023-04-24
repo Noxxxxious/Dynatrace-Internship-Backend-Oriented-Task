@@ -1,4 +1,4 @@
-package com.example.task.domain.entity;
+package com.example.task.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class ExchangeRateDataA {
+public class ExchangeRateDataC {
 
     @JsonProperty("table")
     private String table;
@@ -23,7 +23,6 @@ public class ExchangeRateDataA {
     private String code;
 
     @JsonProperty("rates")
-    private List<ExchangeRateDetailsA> rates;
-
+    private List<ExchangeRateDetailsC> rates;
 
 }

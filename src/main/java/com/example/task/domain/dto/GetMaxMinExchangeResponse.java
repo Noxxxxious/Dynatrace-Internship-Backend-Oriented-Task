@@ -1,6 +1,5 @@
 package com.example.task.domain.dto;
 
-import com.example.task.domain.entity.ExchangeRateDataA;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 

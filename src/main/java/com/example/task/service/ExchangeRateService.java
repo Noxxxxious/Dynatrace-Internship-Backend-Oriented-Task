@@ -1,6 +1,6 @@
 package com.example.task.service;
 
-import com.example.task.domain.entity.ExchangeRateDataA;
+import com.example.task.domain.dto.ExchangeRateDataA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,8 +13,13 @@ import java.util.Optional;
 
 @Service("exchanges")
 public class ExchangeRateService implements IExchangeRateService{
+
+    private final RestTemplate restTemplate;
+
     @Autowired
-    RestTemplate restTemplate;
+    public ExchangeRateService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @Override
     public Optional<ExchangeRateDataA> getExchangeRateDataByCodeAndDate(String code, LocalDate date){
@@ -25,9 +30,7 @@ public class ExchangeRateService implements IExchangeRateService{
         }
 
         //request url
-        String url = "http://api.nbp.pl/api/exchangerates/rates/A/{code}/{date}"
-                .replace("{code}", code)
-                .replace("{date}", date.toString());
+        String url = String.format("http://api.nbp.pl/api/exchangerates/rates/A/%s/%s", code, date.toString());
 
         //querying data from NBP API
         try {

@@ -1,7 +1,7 @@
 package com.example.task.service;
 
-import com.example.task.domain.entity.ExchangeRateDataC;
-import com.example.task.domain.entity.ExchangeRateDetailsC;
+import com.example.task.domain.dto.ExchangeRateDataC;
+import com.example.task.domain.dto.ExchangeRateDetailsC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,8 +15,12 @@ import java.util.Optional;
 @Service("buyaskdiff")
 public class BuyAskDiffService implements IBuyAskDiffService{
 
+    private final RestTemplate restTemplate;
+
     @Autowired
-    RestTemplate restTemplate;
+    public BuyAskDiffService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @Override
     public Optional<ExchangeRateDataC> getLargestBuyAskDiffRateByCode(String code, int N){
@@ -26,9 +30,7 @@ public class BuyAskDiffService implements IBuyAskDiffService{
         }
 
         //request url
-        String url = "http://api.nbp.pl/api/exchangerates/rates/C/{code}/last/{n}"
-                .replace("{code}", code)
-                .replace("{n}", Integer.toString(N));
+        String url = String.format("http://api.nbp.pl/api/exchangerates/rates/C/%s/last/%d", code, N);
 
         try {
             ResponseEntity<ExchangeRateDataC> responseEntity =

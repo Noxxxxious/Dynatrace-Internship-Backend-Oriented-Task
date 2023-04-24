@@ -1,4 +1,4 @@
-package com.example.task.domain.entity;
+package com.example.task.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Data
-public class ExchangeRateDetailsA {
+public class ExchangeRateDetailsC {
 
     @JsonProperty("no")
     private String no;
@@ -18,6 +18,9 @@ public class ExchangeRateDetailsA {
     @JsonProperty("effectiveDate")
     private LocalDate effectiveDate;
 
-    @JsonProperty("mid")
-    private double exchangeRate;
+    @JsonProperty("bid")
+    private double bid;
+
+    @JsonProperty("ask")
+    private double ask;
 }

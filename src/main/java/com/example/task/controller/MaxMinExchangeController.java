@@ -1,7 +1,7 @@
 package com.example.task.controller;
 
 import com.example.task.domain.dto.GetMaxMinExchangeResponse;
-import com.example.task.domain.entity.ExchangeRateDataA;
+import com.example.task.domain.dto.ExchangeRateDataA;
 import com.example.task.service.IMaxMinExchangeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

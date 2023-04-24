@@ -1,7 +1,7 @@
 package com.example.task.service;
 
-import com.example.task.domain.entity.ExchangeRateDataA;
-import com.example.task.domain.entity.ExchangeRateDetailsA;
+import com.example.task.domain.dto.ExchangeRateDataA;
+import com.example.task.domain.dto.ExchangeRateDetailsA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,8 +14,12 @@ import java.util.Optional;
 @Service("maxminrates")
 public class MaxMinExchangeService implements IMaxMinExchangeService{
 
+    private final RestTemplate restTemplate;
+
     @Autowired
-    RestTemplate restTemplate;
+    public MaxMinExchangeService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @Override
     public Optional<ExchangeRateDataA> getMinMaxExchangeByCode(String code, int N) {
@@ -25,9 +29,7 @@ public class MaxMinExchangeService implements IMaxMinExchangeService{
         }
 
         //request url
-        String url = "http://api.nbp.pl/api/exchangerates/rates/A/{code}/last/{n}"
-                .replace("{code}", code)
-                .replace("{n}", Integer.toString(N));
+        String url = String.format("http://api.nbp.pl/api/exchangerates/rates/A/%s/last/%d", code, N);
 
         //querying data from NBP API
         try {
