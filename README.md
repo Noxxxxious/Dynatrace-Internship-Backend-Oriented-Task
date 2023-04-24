@@ -1,5 +1,5 @@
 # Description
-This is an implementation of backend orient task for Dynatrace internship application. My goal was to implement a simple runnable local server destined to query data from the Narodowy Bank Polski's public APIs and return relevant information from them.
+This is an implementation of backend oriented task for Dynatrace internship application. My goal was to implement a simple runnable local server destined to query data from the Narodowy Bank Polski's public APIs and return relevant information from them.
 # Installation
 In the project directory run following commands:
 - Create docker image
