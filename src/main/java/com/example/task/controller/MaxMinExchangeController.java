@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/minmaxrates")
+@RequestMapping("/api/maxminrates")
 public class MaxMinExchangeController {
 
     @Autowired

@@ -19,6 +19,10 @@ public class MaxMinExchangeService implements IMaxMinExchangeService{
 
     @Override
     public Optional<ExchangeRateData> getMinMaxExchangeByCode(String code, int N) {
+        //excluding N larger than 255 from queries
+        if (N > 255){
+            return Optional.empty();
+        }
 
         //request url
         String url = "http://api.nbp.pl/api/exchangerates/rates/A/{code}/last/{n}"
