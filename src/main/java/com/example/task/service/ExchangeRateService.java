@@ -16,7 +16,7 @@ public class ExchangeRateService implements IExchangeRateService{
     RestTemplate restTemplate;
 
     @Override
-    public Optional<ExchangeRateData> getExchangeRateDetailsByCodeAndDate(String code, LocalDate date){
+    public Optional<ExchangeRateData> getExchangeRateDataByCodeAndDate(String code, LocalDate date){
 
         String url = "http://api.nbp.pl/api/exchangerates/rates/A/{code}/{date}"
                 .replace("{code}", code)
@@ -25,7 +25,6 @@ public class ExchangeRateService implements IExchangeRateService{
         try {
             ResponseEntity<ExchangeRateData> responseEntity =
                     restTemplate.getForEntity(url, ExchangeRateData.class);
-            System.out.println(responseEntity);
             return Optional.ofNullable(responseEntity.getBody());
         } catch (HttpClientErrorException ex) {
             return Optional.empty();

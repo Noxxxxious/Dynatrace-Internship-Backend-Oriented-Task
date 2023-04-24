@@ -15,14 +15,14 @@ import java.util.Optional;
 public class ExchangeRateController {
 
     @Autowired
-    IExchangeRateService exchanges;
+    IExchangeRateService exchangesService;
 
     @RequestMapping("{code}/{date}")
     public ResponseEntity<GetExchangeRateResponse> getExchangeRateByCurrencyCode(@PathVariable("code") String code,
                                                                     @PathVariable("date") String date){
 
-        Optional<ExchangeRateData> exchangeRateData = exchanges
-                .getExchangeRateDetailsByCodeAndDate(code, LocalDate.parse(date));
+        Optional<ExchangeRateData> exchangeRateData = exchangesService
+                .getExchangeRateDataByCodeAndDate(code, LocalDate.parse(date));
 
         return exchangeRateData
                 .map(value -> ResponseEntity
