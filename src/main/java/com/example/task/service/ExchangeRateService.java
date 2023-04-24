@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -18,10 +19,17 @@ public class ExchangeRateService implements IExchangeRateService{
     @Override
     public Optional<ExchangeRateData> getExchangeRateDataByCodeAndDate(String code, LocalDate date){
 
+        //excluding weekends from the queries - no data
+        if (date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY){
+            return Optional.empty();
+        }
+
+        //request url
         String url = "http://api.nbp.pl/api/exchangerates/rates/A/{code}/{date}"
                 .replace("{code}", code)
                 .replace("{date}", date.toString());
 
+        //querying data from NBP API
         try {
             ResponseEntity<ExchangeRateData> responseEntity =
                     restTemplate.getForEntity(url, ExchangeRateData.class);

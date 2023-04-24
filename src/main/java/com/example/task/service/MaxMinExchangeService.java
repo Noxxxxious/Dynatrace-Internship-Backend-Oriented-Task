@@ -19,14 +19,18 @@ public class MaxMinExchangeService implements IMaxMinExchangeService{
 
     @Override
     public Optional<ExchangeRateData> getMinMaxExchangeByCode(String code, int N) {
+
+        //request url
         String url = "http://api.nbp.pl/api/exchangerates/rates/A/{code}/last/{n}"
                 .replace("{code}", code)
                 .replace("{n}", Integer.toString(N));
 
+        //querying data from NBP API
         try {
             ResponseEntity<ExchangeRateData> responseEntity =
                     restTemplate.getForEntity(url, ExchangeRateData.class);
 
+            //find max and min average rates and insert into ExchangeRateData object
             ExchangeRateData exchangeRateData = responseEntity.getBody();
             assert exchangeRateData != null;
             exchangeRateData.setRates(findMaxMinValues(exchangeRateData));
