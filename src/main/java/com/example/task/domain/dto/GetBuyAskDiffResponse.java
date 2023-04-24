@@ -1,6 +1,6 @@
-package com.example.task.dto;
+package com.example.task.domain.dto;
 
-import com.example.task.entity.ExchangeRateDataC;
+import com.example.task.domain.entity.ExchangeRateDataC;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 

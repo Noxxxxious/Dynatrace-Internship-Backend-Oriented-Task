@@ -1,4 +1,4 @@
-package com.example.task.entity;
+package com.example.task.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;

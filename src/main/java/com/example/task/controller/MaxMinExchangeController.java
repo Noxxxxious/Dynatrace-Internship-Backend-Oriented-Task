@@ -1,7 +1,7 @@
 package com.example.task.controller;
 
-import com.example.task.dto.GetMaxMinExchangeResponse;
-import com.example.task.entity.ExchangeRateDataA;
+import com.example.task.domain.dto.GetMaxMinExchangeResponse;
+import com.example.task.domain.entity.ExchangeRateDataA;
 import com.example.task.service.IMaxMinExchangeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class MaxMinExchangeController {
     @Autowired
     IMaxMinExchangeService exchangesService;
 
-    @RequestMapping("{code}/{n}")
+    @RequestMapping("/{code}/{n}")
     public ResponseEntity<GetMaxMinExchangeResponse> getMaxMinExchange(@PathVariable("code") String code,
                                                                        @PathVariable("n") int N){
 

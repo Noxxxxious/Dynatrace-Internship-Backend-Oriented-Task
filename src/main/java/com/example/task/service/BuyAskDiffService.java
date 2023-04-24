@@ -1,7 +1,7 @@
 package com.example.task.service;
 
-import com.example.task.entity.ExchangeRateDataC;
-import com.example.task.entity.ExchangeRateDetailsC;
+import com.example.task.domain.entity.ExchangeRateDataC;
+import com.example.task.domain.entity.ExchangeRateDetailsC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

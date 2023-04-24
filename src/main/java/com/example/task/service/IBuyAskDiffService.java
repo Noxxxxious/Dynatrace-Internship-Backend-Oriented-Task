@@ -1,6 +1,6 @@
 package com.example.task.service;
 
-import com.example.task.entity.ExchangeRateDataC;
+import com.example.task.domain.entity.ExchangeRateDataC;
 
 import java.util.Optional;
 

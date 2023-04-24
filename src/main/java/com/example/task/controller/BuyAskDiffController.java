@@ -1,7 +1,7 @@
 package com.example.task.controller;
 
-import com.example.task.dto.GetBuyAskDiffResponse;
-import com.example.task.entity.ExchangeRateDataC;
+import com.example.task.domain.dto.GetBuyAskDiffResponse;
+import com.example.task.domain.entity.ExchangeRateDataC;
 import com.example.task.service.IBuyAskDiffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,9 @@ public class BuyAskDiffController {
     @Autowired
     IBuyAskDiffService exchangesService;
 
-    @RequestMapping("{code}/{n}")
-    public ResponseEntity<GetBuyAskDiffResponse> getLargestBuyAskDiff(@PathVariable("code") String code, @PathVariable("n") int N){
+    @RequestMapping("/{code}/{n}")
+    public ResponseEntity<GetBuyAskDiffResponse> getLargestBuyAskDiff(@PathVariable("code") String code,
+                                                                      @PathVariable("n") int N){
 
         Optional<ExchangeRateDataC> exchangeRateData = exchangesService.getLargestBuyAskDiffRateByCode(code, N);
 
