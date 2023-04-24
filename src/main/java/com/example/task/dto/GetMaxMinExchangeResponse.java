@@ -1,22 +1,24 @@
 package com.example.task.dto;
 
-import com.example.task.entity.ExchangeRateData;
-import com.example.task.entity.ExchangeRateDetails;
+import com.example.task.entity.ExchangeRateDataA;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 
-import java.util.List;
 import java.util.function.Function;
 
 @Builder
 public class GetMaxMinExchangeResponse {
 
-    @JsonProperty("rates")
-    private final List<ExchangeRateDetails> rates;
+    @JsonProperty("maxRate")
+    private final double maxRate;
 
-    public static Function<ExchangeRateData, GetMaxMinExchangeResponse> entityToDtoMapper(){
+    @JsonProperty("minRate")
+    private final double minRate;
+
+    public static Function<ExchangeRateDataA, GetMaxMinExchangeResponse> entityToDtoMapper(){
         return exchangeRateData -> GetMaxMinExchangeResponse.builder()
-                .rates(exchangeRateData.getRates())
+                .maxRate(exchangeRateData.getRates().get(0).getExchangeRate())
+                .minRate(exchangeRateData.getRates().get(1).getExchangeRate())
                 .build();
     }
 

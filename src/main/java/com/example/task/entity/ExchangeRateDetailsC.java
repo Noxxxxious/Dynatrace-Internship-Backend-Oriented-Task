@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Data
-public class ExchangeRateDetails {
+public class ExchangeRateDetailsC {
 
     @JsonProperty("no")
     private String no;
@@ -18,6 +18,9 @@ public class ExchangeRateDetails {
     @JsonProperty("effectiveDate")
     private LocalDate effectiveDate;
 
-    @JsonProperty("mid")
-    private double exchangeRate;
+    @JsonProperty("bid")
+    private double bid;
+
+    @JsonProperty("ask")
+    private double ask;
 }

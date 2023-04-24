@@ -1,7 +1,7 @@
 package com.example.task.service;
 
-import com.example.task.entity.ExchangeRateData;
-import com.example.task.entity.ExchangeRateDetails;
+import com.example.task.entity.ExchangeRateDataA;
+import com.example.task.entity.ExchangeRateDetailsA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -11,14 +11,14 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.Optional;
 
-@Service("minmaxrates")
+@Service("maxminrates")
 public class MaxMinExchangeService implements IMaxMinExchangeService{
 
     @Autowired
     RestTemplate restTemplate;
 
     @Override
-    public Optional<ExchangeRateData> getMinMaxExchangeByCode(String code, int N) {
+    public Optional<ExchangeRateDataA> getMinMaxExchangeByCode(String code, int N) {
         //excluding N larger than 255 from queries
         if (N > 255){
             return Optional.empty();
@@ -31,11 +31,11 @@ public class MaxMinExchangeService implements IMaxMinExchangeService{
 
         //querying data from NBP API
         try {
-            ResponseEntity<ExchangeRateData> responseEntity =
-                    restTemplate.getForEntity(url, ExchangeRateData.class);
+            ResponseEntity<ExchangeRateDataA> responseEntity =
+                    restTemplate.getForEntity(url, ExchangeRateDataA.class);
 
             //find max and min average rates and insert into ExchangeRateData object
-            ExchangeRateData exchangeRateData = responseEntity.getBody();
+            ExchangeRateDataA exchangeRateData = responseEntity.getBody();
             assert exchangeRateData != null;
             exchangeRateData.setRates(findMaxMinValues(exchangeRateData));
 
@@ -46,13 +46,13 @@ public class MaxMinExchangeService implements IMaxMinExchangeService{
 
     }
 
-    private List<ExchangeRateDetails> findMaxMinValues(ExchangeRateData exchangeRateData){
-        ExchangeRateDetails max = new ExchangeRateDetails(), min = new ExchangeRateDetails();
+    private List<ExchangeRateDetailsA> findMaxMinValues(ExchangeRateDataA exchangeRateData){
+        ExchangeRateDetailsA max = new ExchangeRateDetailsA(), min = new ExchangeRateDetailsA();
         max.setExchangeRate(-Double.MAX_VALUE);
         min.setExchangeRate(Double.MAX_VALUE);
 
         assert exchangeRateData != null;
-        for(ExchangeRateDetails exchangeRateDetails : exchangeRateData.getRates()){
+        for(ExchangeRateDetailsA exchangeRateDetails : exchangeRateData.getRates()){
             if (exchangeRateDetails.getExchangeRate() > max.getExchangeRate()){
                 max = exchangeRateDetails;
             }

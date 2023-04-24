@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class ExchangeRateData {
+public class ExchangeRateDataA {
 
     @JsonProperty("table")
     private String table;
@@ -23,7 +23,7 @@ public class ExchangeRateData {
     private String code;
 
     @JsonProperty("rates")
-    private List<ExchangeRateDetails> rates;
+    private List<ExchangeRateDetailsA> rates;
 
 
 }

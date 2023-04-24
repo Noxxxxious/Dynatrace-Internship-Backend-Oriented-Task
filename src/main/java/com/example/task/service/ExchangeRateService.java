@@ -1,6 +1,6 @@
 package com.example.task.service;
 
-import com.example.task.entity.ExchangeRateData;
+import com.example.task.entity.ExchangeRateDataA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class ExchangeRateService implements IExchangeRateService{
     RestTemplate restTemplate;
 
     @Override
-    public Optional<ExchangeRateData> getExchangeRateDataByCodeAndDate(String code, LocalDate date){
+    public Optional<ExchangeRateDataA> getExchangeRateDataByCodeAndDate(String code, LocalDate date){
 
         //excluding weekends from the queries - no data
         if (date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY){
@@ -31,8 +31,8 @@ public class ExchangeRateService implements IExchangeRateService{
 
         //querying data from NBP API
         try {
-            ResponseEntity<ExchangeRateData> responseEntity =
-                    restTemplate.getForEntity(url, ExchangeRateData.class);
+            ResponseEntity<ExchangeRateDataA> responseEntity =
+                    restTemplate.getForEntity(url, ExchangeRateDataA.class);
             return Optional.ofNullable(responseEntity.getBody());
         } catch (HttpClientErrorException ex) {
             return Optional.empty();
