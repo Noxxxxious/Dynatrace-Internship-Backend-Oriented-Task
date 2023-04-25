@@ -17,7 +17,6 @@ public class BuyAskDiffService implements IBuyAskDiffService{
 
     private final RestTemplate restTemplate;
 
-    @Autowired
     public BuyAskDiffService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }

@@ -16,7 +16,6 @@ public class ExchangeRateService implements IExchangeRateService{
 
     private final RestTemplate restTemplate;
 
-    @Autowired
     public ExchangeRateService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }

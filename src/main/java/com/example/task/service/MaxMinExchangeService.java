@@ -16,7 +16,6 @@ public class MaxMinExchangeService implements IMaxMinExchangeService{
 
     private final RestTemplate restTemplate;
 
-    @Autowired
     public MaxMinExchangeService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
